@@ -2,8 +2,9 @@ Routes:
 
 Get =>
     - get all users -- done
-    - get accounts for a users
-    - get user details by id
+    - get user details by id -- done
+    - get accounts for all users
+    - get accounts for a user
     - get all transactions for a user
     - get transactions for a specific acount for a user
     - get transactions for a specific date range for a user
@@ -14,11 +15,11 @@ Post =>
     - create/add transaction (for a user for an account)
 
 Update =>
-    - update user info
+    - update user info --done
     - update account info
     - (optional) update transaction details
 
 Delete =>
-    - delete a user
+    - delete a user -- done
     - delete an account (if account is deleted delete all transactions for that account for that user)
     - delete a transaction
