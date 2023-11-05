@@ -1,0 +1,24 @@
+Routes:
+
+Get =>
+    - get all users -- done
+    - get accounts for a users
+    - get user details by id
+    - get all transactions for a user
+    - get transactions for a specific acount for a user
+    - get transactions for a specific date range for a user
+
+Post =>
+    - create a user -- done
+    - create/add an acoount for a user
+    - create/add transaction (for a user for an account)
+
+Update =>
+    - update user info
+    - update account info
+    - (optional) update transaction details
+
+Delete =>
+    - delete a user
+    - delete an account (if account is deleted delete all transactions for that account for that user)
+    - delete a transaction
