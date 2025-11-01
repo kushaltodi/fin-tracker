@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 require('dotenv').config();
 
 const db = require('./database/connection');
@@ -56,8 +57,21 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-// Error handling middleware
-app.use(notFound);
+// Serve static files from React build
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the React app build directory
+  app.use(express.static(path.join(__dirname, '../build')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  });
+}
+
+// Error handling middleware (only for API routes when not serving React)
+if (process.env.NODE_ENV !== 'production') {
+  app.use(notFound);
+}
 app.use(errorHandler);
 
 // Start server

@@ -1,0 +1,22 @@
+# Development files
+
+webapp/node_modules
+webapp/src
+webapp/.env
+webapp/.env.local
+webapp/vite.config.ts
+webapp/tsconfig.json
+webapp/eslint.config.js
+
+# Backend development files
+
+webapi/node_modules/.cache
+webapi/tests
+webapi/.env
+
+# General
+
+.git
+\*.log
+.DS_Store
+README.md

@@ -6,11 +6,15 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "build": "npm run build:client && npm run migrate",
+    "build:client": "cd ../webapp && npm install && npm run build && xcopy /E /I /Y dist ..\\webapi\\build",
+    "build:client:unix": "cd ../webapp && npm install && npm run build && cp -r dist/* ../webapi/build/",
     "migrate": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "vercel-build": "npm run build:client:unix && npm run migrate"
   },
   "keywords": ["finance", "tracker", "api", "express", "knex"],
   "author": "",

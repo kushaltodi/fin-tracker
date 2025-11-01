@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "finflux",
+  "buildCommand": "npm run vercel-build",
+  "builds": [
+    {
+      "src": "webapi/src/server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": "webapi/build/**"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "webapi/src/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "webapi/src/server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
