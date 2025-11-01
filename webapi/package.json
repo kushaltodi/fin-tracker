@@ -1,17 +1,37 @@
 {
-  "name": "fin-tracker",
+  "name": "fin-tracker-api",
   "version": "1.0.0",
-  "description": "track your finances",
-  "main": "index.js",
+  "description": "Financial Tracker Backend API",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
-  "author": "Kushal Todi",
+  "keywords": ["finance", "tracker", "api", "express", "knex"],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "pg": "^8.11.3",
+    "knex": "^3.0.1",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-validator": "^7.0.1",
+    "express-rate-limit": "^7.1.5",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
   }
 }

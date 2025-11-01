@@ -1,6 +1,0 @@
-Swagger:
--https://rajputankit22.medium.com/how-to-add-swagger-to-nodejs-rest-api-7caa870741be
-
-Project Architecture:
--https://steve-mu.medium.com/how-i-structure-full-stack-web-application-with-react-and-nodejs-b8ec9d2bc9b4
--
