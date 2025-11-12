@@ -1,41 +1,41 @@
 {
-  "name": "fin-tracker-api",
+  "name": "finflux-webapi",
   "version": "1.0.0",
-  "description": "Financial Tracker Backend API",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "npm run build:client && npm run migrate",
-    "build:client": "cd ../webapp && npm install && npm run build && xcopy /E /I /Y dist ..\\webapi\\build",
-    "build:client:unix": "cd ../webapp && npm install && npm run build && cp -r dist/* ../webapi/build/",
-    "migrate": "knex migrate:latest",
-    "migrate:rollback": "knex migrate:rollback",
+    "migrate": "node scripts/migrate-safe.js",
     "seed": "knex seed:run",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "vercel-build": "npm run build:client:unix && npm run migrate"
+    "build:client": "node scripts/copy-webapp.js",
+    "vercel-build": "npm run build:client",
+    "prepare-deploy": "node scripts/prepare-deployment.js",
+    "db:sqlite": "node scripts/switch-db.js sqlite",
+    "db:postgres": "node scripts/switch-db.js postgres", 
+    "db:status": "node scripts/switch-db.js status",
+    "dev:sqlite": "npm run db:sqlite && npm run dev",
+    "dev:postgres": "npm run db:postgres && npm run dev",
+    "migrate:sqlite": "npm run db:sqlite && npm run migrate",
+    "migrate:postgres": "npm run db:postgres && npm run migrate",
+    "seed:sqlite": "npm run db:sqlite && npm run seed",
+    "seed:postgres": "npm run db:postgres && npm run seed"
   },
-  "keywords": ["finance", "tracker", "api", "express", "knex"],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "knex": "^3.0.1",
     "sqlite3": "^5.1.6",
-    "cors": "^2.8.5",
-    "helmet": "^7.1.0",
-    "morgan": "^1.10.0",
-    "dotenv": "^16.3.1",
+    "pg": "^8.11.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
-    "express-validator": "^7.0.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
     "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.3.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2",
-    "jest": "^29.7.0",
-    "supertest": "^6.3.3"
+    "nodemon": "^3.0.1"
   }
 }

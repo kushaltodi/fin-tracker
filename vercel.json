@@ -1,13 +1,14 @@
 {
   "version": 2,
   "name": "finflux",
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "cd webapi && npm install && npm run vercel-build",
   "builds": [
     {
       "src": "webapi/src/server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": "webapi/build/**"
+        "includeFiles": "webapi/build/**",
+        "maxLambdaSize": "10mb"
       }
     }
   ],
@@ -22,6 +23,12 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "USE_POSTGRES": "true"
+  },
+  "functions": {
+    "webapi/src/server.js": {
+      "maxDuration": 30
+    }
   }
 }
